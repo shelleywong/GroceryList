@@ -1,6 +1,14 @@
+var myList = [];
+
 function addItem(){
   //Get the value of what the user typed in the text box and assign it to a variable called input
   var input = document.getElementById("newItem").value;
+  //if the item is not already in the list, add it to the list
+  if(myList.indexOf(input) == -1) {
+    //add item to myList array
+    myList.push(input);
+    console.log(myList);
+  }
   //Get the element listDisplay and assign it to a variable called list
   var list = document.getElementById("listDisplay");
   //Create a new variable called item and assign it to: document.createElement("li");
