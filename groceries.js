@@ -17,6 +17,8 @@ function addItem(){
   var iconClose = document.createElement("span");
   iconClose.classList.add("glyphicon");
   iconClose.classList.add("glyphicon-remove");
+  //when button is clicked, parent list item is removed
+  btnClose.addEventListener("click",removeParentListItem);
   //make the span element a child to the button element
   btnClose.appendChild(iconClose);
   //This puts that plain text element as the innerHTML (child) of the li element called item
@@ -28,6 +30,12 @@ function addItem(){
   //Set the value attribute of the text input element to be an empty string so that
   //what the user typed in is no longer shown in the text box
   document.getElementById("newItem").value = "";
+}
+
+function removeParentListItem() {
+  var mom = this.parentNode;
+  var grandma = mom.parentNode;
+  grandma.removeChild(mom);
 }
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
