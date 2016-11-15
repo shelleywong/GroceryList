@@ -8,42 +8,46 @@ function addItem(){
     //add item to myList array
     myList.push(input);
     console.log(myList);
+    //Get the element listDisplay and assign it to a variable called list
+    var list = document.getElementById("listDisplay");
+    //Create a new variable called item and assign it to: document.createElement("li");
+    //This creates a new list item element for the document object model (DOM).
+    var item = document.createElement("li");
+    //Create a new variable called itemName and assign it to: document.createTextNode(input);
+    //This creates plain text element from the value of the variable input to put in the DOM.
+    var itemName = document.createTextNode(input);
+    //create a variable which contains a new button element
+    var btnClose = document.createElement("button");
+    btnClose.classList.add("button");
+    btnClose.classList.add("btn-danger");
+    btnClose.classList.add("btn-xs");
+    var iconClose = document.createElement("span");
+    iconClose.classList.add("glyphicon");
+    iconClose.classList.add("glyphicon-remove");
+    //when button is clicked, parent list item is removed
+    btnClose.addEventListener("click",removeParentListItem);
+    //make the span element a child to the button element
+    btnClose.appendChild(iconClose);
+    //This puts that plain text element as the innerHTML (child) of the li element called item
+    item.appendChild(itemName);
+    //make the btn element a child of the list element
+    item.appendChild(btnClose);
+    //This puts the li element (item) inside the ul in the document (list) so it can be seen on the screen
+    list.appendChild(item);
+    //Set the value attribute of the text input element to be an empty string so that
+    //what the user typed in is no longer shown in the text box
+    document.getElementById("newItem").value = "";
   }
-  //Get the element listDisplay and assign it to a variable called list
-  var list = document.getElementById("listDisplay");
-  //Create a new variable called item and assign it to: document.createElement("li");
-  //This creates a new list item element for the document object model (DOM).
-  var item = document.createElement("li");
-  //Create a new variable called itemName and assign it to: document.createTextNode(input);
-  //This creates plain text element from the value of the variable input to put in the DOM.
-  var itemName = document.createTextNode(input);
-  //create a variable which contains a new button element
-  var btnClose = document.createElement("button");
-  btnClose.classList.add("button");
-  btnClose.classList.add("btn-danger");
-  btnClose.classList.add("btn-xs");
-  var iconClose = document.createElement("span");
-  iconClose.classList.add("glyphicon");
-  iconClose.classList.add("glyphicon-remove");
-  //when button is clicked, parent list item is removed
-  btnClose.addEventListener("click",removeParentListItem);
-  //make the span element a child to the button element
-  btnClose.appendChild(iconClose);
-  //This puts that plain text element as the innerHTML (child) of the li element called item
-  item.appendChild(itemName);
-  //make the btn element a child of the list element
-  item.appendChild(btnClose);
-  //This puts the li element (item) inside the ul in the document (list) so it can be seen on the screen
-  list.appendChild(item);
-  //Set the value attribute of the text input element to be an empty string so that
-  //what the user typed in is no longer shown in the text box
-  document.getElementById("newItem").value = "";
 }
 
 function removeParentListItem() {
   var mom = this.parentNode;
   var grandma = mom.parentNode;
+  var itemRemove = mom.firstChild;
+  var itemIndex = myList.indexOf(itemRemove);
   grandma.removeChild(mom);
+  myList.splice(itemIndex,1);
+  console.log(myList);
 }
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
