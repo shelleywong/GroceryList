@@ -50,6 +50,20 @@ function removeParentListItem() {
   console.log(myList);
 }
 
+//assign myList elements to a string with commas between elements
+//save the list in a cookie
+function saveList(){
+  var text = myList.join(", ");
+  setCookie("groceryItems",text,1);
+}
+
+//get element "listDisplay" and replace all of its children with nothing
+//update myList so that it is an empty array
+function clearList(){
+  document.getElementById("listDisplay").innerHTML = "";
+  myList = [];
+}
+
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
