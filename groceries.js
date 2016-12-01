@@ -20,7 +20,7 @@ function removeParentListItem() {
 //assign myList elements to a string with commas between elements
 //save the list in a cookie
 function saveList(){
-  var text = myList.join(", ");
+  var text = myList.join(",");
   setCookie("groceryItems",text,1);
 }
 
@@ -70,11 +70,19 @@ function displayItem(userInput){
 }
 
 function loadCookieList(){
+  //eraseCookie("groceryItems");
   var groceryList = getCookie("groceryItems");
-  var arrayCookie = groceryList.split(" ");
+  var arrayCookie = groceryList.split(",");
   for(var i=0; i<arrayCookie.length; i++){
-    displayItem(arrayCookie[i]);
+    if (String(arrayCookie[i]) === "") {
+      continue;
+    }
+    displayItem(String(arrayCookie[i]));
   }
+}
+
+function eraseCookie(c_name) {
+    setCookie(c_name,"",-1);
 }
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
